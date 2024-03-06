@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.ambiws.numbers_ivtest.core.view.CustomToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:title="@string/number_details_title" />
+
+    <TextView
+        android:id="@+id/tvFacts"
+        style="@style/ButtonClassic"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:text="Aenean dapibus sapien sit amet malesuada maximus. Cras aliquet lorem ut fermentum consectetur. Maecenas aliquet vestibulum mauris, sed posuere ipsum venenatis quis. Integer vitae laoreet massa. Praesent eu nibh tellus. Sed consectetur orci vitae velit consequat vestibulum. In hac habitasse platea dictumst. Aliquam maximus viverra metus. Nulla facilisi. Aliquam vestibulum mi nisl, sit amet hendrerit erat vulputate at. Morbi dui sapien, tincidunt a rutrum laoreet, porttitor sit amet mauris. In finibus maximus diam. Sed ac ante ex. Etiam eu mollis sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed molestie facilisis tincidunt." />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,18 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.ambiws.numbers_ivtest.features.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:name="com.ambiws.numbers_ivtest.features.home.ui.HomeFragment"
+        android:label="HomeFragment">
+        <action
+            android:id="@+id/action_homeFragment_to_numbersFragment"
+            app:destination="@id/numbersFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/numbersFragment"
+        android:name="com.ambiws.numbers_ivtest.features.numbers.ui.NumbersFragment"
+        android:label="NumbersFragment" >
+        <argument android:name="numberParams"
+            app:argType="com.ambiws.numbers_ivtest.features.numbers.ui.model.NumbersParams" />
+    </fragment>
 </navigation>

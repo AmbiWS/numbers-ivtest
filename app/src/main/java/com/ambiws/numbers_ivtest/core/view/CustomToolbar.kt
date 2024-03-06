@@ -45,4 +45,8 @@ class CustomToolbar @JvmOverloads constructor(
         }
         customAttrs.recycle()
     }
+
+    fun setTitle(title: String) {
+        binding.tvTitle.text = title
+    }
 }

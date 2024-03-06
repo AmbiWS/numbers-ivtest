@@ -6,4 +6,10 @@
     <string name="unexpected_network_error">Unexpected network error</string>
     <string name="unable_to_communicate_to_server">Unable to communicate to server</string>
     <string name="no_internet_connection">No internet connection</string>
+
+    <string name="number_hint">Any number. E.g. 1, 23, 519, etc.</string>
+    <string name="number_hint_focused">Enter your number</string>
+    <string name="get_fact">Get fact</string>
+    <string name="get_random_fact">Get fact about random number</string>
+    <string name="number_details_title">Facts about number %d</string>
 </resources>

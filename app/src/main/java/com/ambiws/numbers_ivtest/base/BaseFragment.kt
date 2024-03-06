@@ -1,19 +1,22 @@
 package com.ambiws.numbers_ivtest.base
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.annotation.CallSuper
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.ambiws.numbers_ivtest.R
 import com.ambiws.numbers_ivtest.base.navigation.NavigationCommandHandler
-import com.google.android.material.snackbar.Snackbar
 import com.ambiws.numbers_ivtest.utils.extensions.className
+import com.ambiws.numbers_ivtest.utils.extensions.mutable
 import com.ambiws.numbers_ivtest.utils.extensions.subscribe
 import com.ambiws.numbers_ivtest.utils.logd
+import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModelForClass
 import java.lang.reflect.ParameterizedType
 
@@ -61,9 +64,14 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding>(
                     // Nothing to do
                 }
                 is UiState.Error -> {
-                    Snackbar.make(binding.root, state.error.message, Snackbar.LENGTH_SHORT)
+                    val snackbar = Snackbar.make(binding.root, state.error.message, Snackbar.LENGTH_SHORT)
                         .setTextColor(requireContext().getColor(R.color.lt_red))
-                        .show()
+                    val snackbarView: View = snackbar.view
+                    val params = snackbarView.layoutParams as FrameLayout.LayoutParams
+                    params.gravity = Gravity.TOP
+                    snackbarView.layoutParams = params
+                    snackbar.show()
+                    viewModel.stateLiveEvent.mutable().value = null
                 }
             }
         }
