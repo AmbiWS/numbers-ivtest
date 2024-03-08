@@ -12,4 +12,5 @@
     <string name="get_fact">Get fact</string>
     <string name="get_random_fact">Get fact about random number</string>
     <string name="number_details_title">Facts about number %d</string>
+    <string name="search_history_is_empty">Search history is empty</string>
 </resources>

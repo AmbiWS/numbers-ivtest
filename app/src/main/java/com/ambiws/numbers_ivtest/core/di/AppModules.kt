@@ -8,6 +8,7 @@ object AppModules {
         coreModule,
         utilsModule,
         networkModule,
+        databaseModule,
         homeModule,
         numbersModule,
     )

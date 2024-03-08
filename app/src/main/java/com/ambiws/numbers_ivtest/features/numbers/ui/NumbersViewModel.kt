@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ambiws.numbers_ivtest.base.BaseViewModel
 import com.ambiws.numbers_ivtest.features.numbers.domain.interactor.NumbersInteractor
+import com.ambiws.numbers_ivtest.features.numbers.domain.model.FactData
 import com.ambiws.numbers_ivtest.utils.extensions.mutable
+import com.ambiws.numbers_ivtest.utils.logd
 import kotlinx.coroutines.withContext
 
 class NumbersViewModel(
@@ -18,6 +20,13 @@ class NumbersViewModel(
             numberFact.mutable().value = withContext(ioContext) {
                 numbersInteractor.getNumberFact(number)
             }
+        }
+    }
+
+    fun saveFact(fact: FactData) {
+        launch {
+            logd("Saving fact: $fact")
+            numbersInteractor.insertFact(fact)
         }
     }
 }

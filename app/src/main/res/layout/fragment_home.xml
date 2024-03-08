@@ -11,7 +11,7 @@
         android:layout_height="0dp"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/historyContainer"
+        app:layout_constraintBottom_toTopOf="@id/rvHistory"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -60,15 +60,26 @@
             app:rippleColor="@color/black50" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/historyContainer"
-        android:layout_width="match_parent"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvHistory"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="vertical"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/factsContainer">
+        app:layout_constraintTop_toBottomOf="@+id/factsContainer"
+        tools:listitem="@layout/item_history" />
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tvEmptyList"
+        style="@style/TextSecondary14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search_history_is_empty"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/factsContainer" />
 </androidx.constraintlayout.widget.ConstraintLayout>

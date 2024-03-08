@@ -9,7 +9,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val numbersModule = module {
-    single<NumbersRepository> { NumbersRepositoryImpl(get()) }
+    single<NumbersRepository> { NumbersRepositoryImpl(get(), get()) }
     factory<NumbersInteractor> { NumbersInteractorImpl(get()) }
     viewModel { NumbersViewModel(get()) }
 }
