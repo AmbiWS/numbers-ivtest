@@ -65,7 +65,7 @@ abstract class BaseViewModel : ViewModel(), KoinComponent {
      */
 
     protected fun launch(
-        coroutineContext: CoroutineContext = ioContext,
+        coroutineContext: CoroutineContext = mainContext,
         showDefaultLoader: Boolean = false,
         block: suspend CoroutineScope.() -> Unit
     ): Job {

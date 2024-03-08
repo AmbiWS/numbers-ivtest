@@ -25,4 +25,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:text="Aenean dapibus sapien sit amet malesuada maximus. Cras aliquet lorem ut fermentum consectetur. Maecenas aliquet vestibulum mauris, sed posuere ipsum venenatis quis. Integer vitae laoreet massa. Praesent eu nibh tellus. Sed consectetur orci vitae velit consequat vestibulum. In hac habitasse platea dictumst. Aliquam maximus viverra metus. Nulla facilisi. Aliquam vestibulum mi nisl, sit amet hendrerit erat vulputate at. Morbi dui sapien, tincidunt a rutrum laoreet, porttitor sit amet mauris. In finibus maximus diam. Sed ac ante ex. Etiam eu mollis sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed molestie facilisis tincidunt." />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/loader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

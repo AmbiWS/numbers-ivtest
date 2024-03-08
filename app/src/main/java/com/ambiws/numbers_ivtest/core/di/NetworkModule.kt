@@ -1,13 +1,16 @@
 package com.ambiws.numbers_ivtest.core.di
 
+import com.ambiws.numbers_ivtest.BuildConfig
 import com.google.gson.GsonBuilder
 import com.ambiws.numbers_ivtest.core.network.adapters.ErrorCallAdapterFactory
 import com.ambiws.numbers_ivtest.core.network.adapters.ExceptionParser
+import com.ambiws.numbers_ivtest.core.network.api.NumbersApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 val networkModule = module {
 
@@ -26,6 +29,10 @@ val networkModule = module {
     }
 
     single {
+        ScalarsConverterFactory.create()
+    }
+
+    single {
         ErrorCallAdapterFactory()
     }
 
@@ -41,14 +48,14 @@ val networkModule = module {
 
     single {
         Retrofit.Builder()
-            .baseUrl("http://localhost:8080/")
-            .addConverterFactory(get<GsonConverterFactory>())
+            .baseUrl(BuildConfig.BASE_URL)
+            .addConverterFactory(get<ScalarsConverterFactory>())
             .addCallAdapterFactory(get<ErrorCallAdapterFactory>())
             .client(get())
             .build()
     }
 
     single {
-        // get<Retrofit>().create(Api::class.java)
+         get<Retrofit>().create(NumbersApi::class.java)
     }
 }
