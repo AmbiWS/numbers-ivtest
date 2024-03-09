@@ -9,4 +9,7 @@ interface NumbersApi {
     suspend fun getNumber(
         @Path("num") number: Int
     ): String
+
+    @GET("random/math")
+    suspend fun getRandomNumber(): String
 }

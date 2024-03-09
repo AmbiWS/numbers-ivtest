@@ -18,6 +18,9 @@ class CustomToolbar @JvmOverloads constructor(
 
     private val binding: ViewToolbarBinding
     val ivLeftAction: ImageView
+    var title: String
+        get() = binding.tvTitle.text.toString()
+        set(value) = kotlin.run { binding.tvTitle.text = value }
 
     init {
         binding = ViewToolbarBinding.inflate(LayoutInflater.from(context), this, true)
@@ -44,9 +47,5 @@ class CustomToolbar @JvmOverloads constructor(
                 }
         }
         customAttrs.recycle()
-    }
-
-    fun setTitle(title: String) {
-        binding.tvTitle.text = title
     }
 }

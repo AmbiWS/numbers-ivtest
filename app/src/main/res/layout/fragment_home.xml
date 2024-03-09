@@ -23,7 +23,6 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:hint="@string/number_hint"
-            app:counterEnabled="true"
             app:counterMaxLength="7">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -39,6 +38,7 @@
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="52dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/poppins_regular"
             android:includeFontPadding="false"
             android:letterSpacing="0"
@@ -64,6 +64,7 @@
         android:id="@+id/rvHistory"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@drawable/bg_white_top_border"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

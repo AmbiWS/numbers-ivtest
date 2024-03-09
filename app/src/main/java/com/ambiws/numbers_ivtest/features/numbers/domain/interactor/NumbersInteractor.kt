@@ -3,10 +3,13 @@ package com.ambiws.numbers_ivtest.features.numbers.domain.interactor
 import com.ambiws.numbers_ivtest.features.numbers.data.repository.NumbersRepository
 import com.ambiws.numbers_ivtest.features.numbers.domain.model.FactData
 import com.ambiws.numbers_ivtest.features.numbers.domain.model.toEntity
+import kotlinx.coroutines.flow.Flow
 
 interface NumbersInteractor {
     suspend fun getNumberFact(number: Int): String
-    suspend fun getSearchHistory(): List<FactData>
+    suspend fun getFactByTimestamp(timestamp: Long): String
+    suspend fun getRandomNumberFact(): String
+    suspend fun getSearchHistory(): Flow<List<FactData>>
     suspend fun insertFact(fact: FactData)
 }
 
@@ -18,7 +21,15 @@ class NumbersInteractorImpl(
         return repository.getNumberFact(number)
     }
 
-    override suspend fun getSearchHistory(): List<FactData> {
+    override suspend fun getFactByTimestamp(timestamp: Long): String {
+        return repository.getFactByTimestamp(timestamp)
+    }
+
+    override suspend fun getRandomNumberFact(): String {
+        return repository.getRandomNumberFact()
+    }
+
+    override suspend fun getSearchHistory(): Flow<List<FactData>> {
         return repository.getSearchHistory()
     }
 

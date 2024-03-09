@@ -14,11 +14,28 @@ class NumbersViewModel(
 ) : BaseViewModel() {
 
     val numberFact: LiveData<String> = MutableLiveData()
+    val localNumberFact: LiveData<String> = MutableLiveData()
 
     fun getNumberFact(number: Int) {
         launch(showDefaultLoader = true) {
             numberFact.mutable().value = withContext(ioContext) {
                 numbersInteractor.getNumberFact(number)
+            }
+        }
+    }
+
+    fun getRandomNumberFact() {
+        launch(showDefaultLoader = true) {
+            numberFact.mutable().value = withContext(ioContext) {
+                numbersInteractor.getRandomNumberFact()
+            }
+        }
+    }
+
+    fun getFactFromDb(timestamp: Long) {
+        launch(showDefaultLoader = true) {
+            localNumberFact.mutable().value = withContext(ioContext) {
+                numbersInteractor.getFactByTimestamp(timestamp)
             }
         }
     }

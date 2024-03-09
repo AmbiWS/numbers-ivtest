@@ -5,5 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class NumbersParams(
-    val number: Int?
+    val number: Int?,
+    val timestamp: Long?,
 ): Parcelable

@@ -7,28 +7,27 @@ import com.ambiws.numbers_ivtest.base.BaseFragment
 import com.ambiws.numbers_ivtest.base.UiState
 import com.ambiws.numbers_ivtest.databinding.FragmentNumbersBinding
 import com.ambiws.numbers_ivtest.features.numbers.domain.model.FactData
-import com.ambiws.numbers_ivtest.utils.Const
 import com.ambiws.numbers_ivtest.utils.extensions.subscribe
-import kotlin.properties.Delegates
-import kotlin.random.Random
+import com.ambiws.numbers_ivtest.utils.loge
 
 class NumbersFragment : BaseFragment<NumbersViewModel, FragmentNumbersBinding>(
     FragmentNumbersBinding::inflate
 ) {
 
     private val args by navArgs<NumbersFragmentArgs>()
-    private var currentNumber by Delegates.notNull<Int>()
 
     override fun setupUi() {
-        with(binding) {
-            currentNumber = if (args.numberParams.number != null) {
-                args.numberParams.number!!
-            } else {
-                // Only values '0..1000' available for random number
-                Random.nextInt(0, Const.MAX_RANDOM_NUMBER_UNTIL)
+        with(args.numberParams) {
+            timestamp?.let {
+                binding.toolbar.title = getString(R.string.number_details_title, number)
+                viewModel.getFactFromDb(it)
+            } ?: number?.let {
+                binding.toolbar.title = getString(R.string.number_details_title, it)
+                viewModel.getNumberFact(it)
+            } ?: kotlin.run {
+                binding.toolbar.title = getString(R.string.generating)
+                viewModel.getRandomNumberFact()
             }
-            toolbar.setTitle(getString(R.string.number_details_title, currentNumber))
-            viewModel.getNumberFact(currentNumber)
         }
     }
 
@@ -44,6 +43,13 @@ class NumbersFragment : BaseFragment<NumbersViewModel, FragmentNumbersBinding>(
         super.setupObservers()
         subscribe(viewModel.numberFact) {
             binding.tvFacts.text = it
+            val currentNumber = try {
+                it.substring(0, it.indexOf(' ')).toInt()
+            } catch (e: Exception) {
+                loge("Impossible to save current fact")
+                return@subscribe
+            }
+            binding.toolbar.title = getString(R.string.number_details_title, currentNumber)
             viewModel.saveFact(
                 FactData(
                     timestamp = System.currentTimeMillis(),
@@ -51,6 +57,9 @@ class NumbersFragment : BaseFragment<NumbersViewModel, FragmentNumbersBinding>(
                     fact = it,
                 )
             )
+        }
+        subscribe(viewModel.localNumberFact) {
+            binding.tvFacts.text = it
         }
         subscribe(viewModel.stateLiveEvent) { state ->
             binding.loader.isVisible = state == UiState.Loading

@@ -1,8 +1,7 @@
 package com.ambiws.numbers_ivtest.features.numbers.domain.model
 
 import com.ambiws.numbers_ivtest.core.database.entity.NumberEntity
-import com.ambiws.numbers_ivtest.features.home.ui.list.HistoryItem
-import java.text.SimpleDateFormat
+import com.ambiws.numbers_ivtest.features.home.ui.list.HistoryItemModel
 
 data class FactData(
     val timestamp: Long,
@@ -22,10 +21,7 @@ fun FactData.toEntity() = NumberEntity(
     fact = fact,
 )
 
-fun FactData.toItem() = HistoryItem(
+fun FactData.toItem() = HistoryItemModel(
     number = number,
-    date = kotlin.run {
-        val sdf = SimpleDateFormat("dd.MM.yyyy HH:mm")
-        sdf.format(timestamp)
-    },
+    timestamp = timestamp,
 )

@@ -6,6 +6,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.flow.Flow
@@ -36,6 +37,15 @@ fun <T> Fragment.subscribe(liveData: (LiveData<T>)?, onNext: (t: T) -> Unit) {
     liveData?.observe(viewLifecycleOwner) {
         if (it != null) {
             onNext(it)
+        }
+    }
+}
+
+fun <T> Fragment.subscribe(flow: (Flow<T?>)?, onNext: (t: T) -> Unit) {
+    flow ?: return
+    viewLifecycleOwner.lifecycle.coroutineScope.launch {
+        flow.collect {
+            if (it != null) onNext(it)
         }
     }
 }
